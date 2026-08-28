@@ -5,7 +5,6 @@ class PantheonLocalTools < Formula
   sha256 "c4d9848d032918536eb357058ea36e4ab19ad37e76cf7d0f52c830f876e44161"
   license "MIT"
 
-
   def install
     libexec.install "bin", "libexec", "VERSION", "LICENSE", "README.md"
     bin.install_symlink libexec/"bin/pantheon-local"
