@@ -42,4 +42,4 @@ jobs:
           brew uninstall pantheon-local-tools
 
           [[ -f "$PANTHEON_LOCAL_CONFIG" ]]
-          [[ "$(git config --file "$PANTHEON_LOCAL_CONFIG" --get provider)" == "lando" ]]
+          [[ "$(git config --file "$PANTHEON_LOCAL_CONFIG" --get local.provider)" == "lando" ]]
