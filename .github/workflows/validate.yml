@@ -1,0 +1,45 @@
+name: Validate
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  homebrew:
+    runs-on: macos-latest
+    steps:
+      - name: Install published formula
+        run: brew install --build-from-source zevarix/tap/pantheon-local-tools
+
+      - name: Test formula
+        run: brew test zevarix/tap/pantheon-local-tools
+
+      - name: Audit formula
+        run: brew audit --strict --new --online zevarix/tap/pantheon-local-tools
+
+      - name: Style formula
+        run: brew style zevarix/tap/pantheon-local-tools
+
+      - name: Verify version, config preservation, and uninstall
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          pantheon-local --version
+
+          validation_root="$(mktemp -d)"
+          export PANTHEON_LOCAL_CONFIG="$validation_root/config"
+
+          pantheon-local config set provider lando
+          [[ "$(pantheon-local config get provider)" == "lando" ]]
+
+          brew uninstall pantheon-local-tools
+
+          [[ -f "$PANTHEON_LOCAL_CONFIG" ]]
+          [[ "$(git config --file "$PANTHEON_LOCAL_CONFIG" --get provider)" == "lando" ]]
