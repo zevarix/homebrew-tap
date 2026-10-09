@@ -1,8 +1,8 @@
 class PantheonLocalTools < Formula
   desc "Provider-neutral local development helpers for Pantheon"
   homepage "https://github.com/zevarix/pantheon-local-tools"
-  url "https://github.com/zevarix/pantheon-local-tools/releases/download/v0.2.2/pantheon-local-tools-0.2.2.tar.gz"
-  sha256 "c60cd54dee1aad619067f8670dbdca89daa143bb05f98d493bd0f1b295450fde"
+  url "https://github.com/zevarix/pantheon-local-tools/releases/download/v0.2.3/pantheon-local-tools-0.2.3.tar.gz"
+  sha256 "659a13104b1756e36dcdca6edec01863d70a58c77f3a0f8d20365fcddff083ef"
   license "MIT"
 
   def install
